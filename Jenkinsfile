@@ -13,7 +13,8 @@ pipeline{
 		sh 'mvn clean package'
 		}
 		post{
-		success{
+		success
+		{
 		archiveArtifacts artifacts:"**/*.war"
 		}
 		}
@@ -29,6 +30,14 @@ pipeline{
 			}
 			}
 		}
+		stage('Deploy to Docker')
+		{
+		steps{
+		  
+		  sh "docker build . -t tomcatwebapp:${env.BUILD_ID}'"
+		  
+		  }
+		}
+		}
 	}
-
 }
