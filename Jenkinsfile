@@ -13,8 +13,13 @@ pipeline{
 		success{
 		archiveArtifacts artifacts:"**/*.war"
 		}
-
 		}
+		}
+		stage('Static Code Analysis')
+		{
+			steps{
+			sh 'mvn checkstyle:checkstyle'
+			}
 		}
 	}
 
