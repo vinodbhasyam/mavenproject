@@ -2,12 +2,13 @@ pipeline{
 	agent any
 	tools
 	{
-	maven 'mvn'
+	maven 'JMS_Maven'
 	}
 	stages{
 		stage('Build'){
 		steps{
-		sh 'echo Hello World!!'
+		sh 'mvn clean package'
+		sh 'echo Package built!!'
 		}
 		}
 	}
