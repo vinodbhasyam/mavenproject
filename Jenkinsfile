@@ -4,6 +4,9 @@ pipeline{
 	{
 	maven 'JMS_Maven'
 	}
+	triggers{
+	scm('H/5 * * * *')
+	}
 	stages{
 		stage('Build'){
 		steps{
@@ -19,6 +22,11 @@ pipeline{
 		{
 			steps{
 			sh 'mvn checkstyle:checkstyle'
+			}
+			post{
+			success{
+				checkstyle canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
+			}
 			}
 		}
 	}
