@@ -5,7 +5,7 @@ pipeline{
 	maven 'JMS_Maven'
 	}
 	triggers{
-	scm('H/5 * * * *')
+	pollSCM('H/5 * * * *')
 	}
 	stages{
 		stage('Build'){
