@@ -8,7 +8,12 @@ pipeline{
 		stage('Build'){
 		steps{
 		sh 'mvn clean package'
-		sh 'echo Package built!!'
+		}
+		post{
+		success{
+		archiveArtifacts artifact:"**/*.war"
+		}
+
 		}
 		}
 	}
